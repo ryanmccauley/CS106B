@@ -1,0 +1,109 @@
+Warmup
+------
+
+Q1. Looking at a call stack listing in a debugger, what is the indication that the program being debugged uses recursion?
+A1. When looking at a call stack listing in a debugger, the sign that it uses recursion is if there is a lot of calls to the same function in the call stack.
+
+Q2. What is the value of parameter `n` at the innermost level (Level 0 or Level 1, depending on your system)?  What is the highest numbered level shown in the call stack? (you may have to drag the column divider to enlarge the column width to fit all the digits) The range between the two gives an estimate of the capacity of the call stack on your system.
+A2. The value of the parameter `n` at the innermost level is 0. The highest numbered level shown in the call stack is 81. 
+
+Q3. Describe how the symptoms of infinite recursion differ from the symptoms of an infinite loop.
+A3. The symptoms differ in infinite recursion and an infite loop because in infinite recursion, it 'floods' the call stack with the same method vs an infinite loop does not.
+
+Q4. What are the specific values of base/exp that result in a test failure?
+A4. The specific values of the exp that result in a test failure is when it is equal to -1.
+
+Q5. Of the four base cases, which do you think are redundant and can be removed from the function? Which do you think are absolutely necessary? Are there any base cases that you're unsure about?
+A5. The ones that I think can be removed is the one where exp == -1 and base == 0. The ones I think are necessary is the ones that tell exp == 0. I am unsure about the exp == 1 test case but I think we need it because without it, there would be no base case.
+
+Q6. First explain why those cases were redundant/unnecessary and then explain why removing them fixed the test failure. (Hint: Consider the types of the values in play here and think about what happens when you do division with integers.)
+A6. I think that these cases are unneccesarry because exp == -1 is convered by the exp < 0 recursive case and exp == 1 is covered by the exp == 0 case.
+
+Q7. What is the result of attempting to compute 0 raised to a negative power without a special case for base == 0?
+A7. The result of attemting to compute 0 raised to a negative power without a special case is "infd". I think this stnads for undefined because it is dividing by 0?
+
+Balanced
+--------
+
+Q8. Compare your recursive solution to the iterative approach used for the Check Balance problem in [Section 1][section1]. Which version do you find easier to read and understand? In which version did you find it easier to confirm the correct behavior?
+A8. The version that I find easier to read and understand is the one recusively implemented. Although, confirming the correct behavior I found it easier in the one from the section.
+
+Merge
+-----
+
+Q9. Give a rough estimate of the maximum length sequence that could be successfully merged on your system assuming a recursive implementation of binary merge.
+A9. The maximum length sequence that could be successfully merged on my system would be around 40 in lnegth. 
+
+Q10. What would be the observed behavior if attempting to recursively merge a sequence larger than that maximum?
+A10. The observed behavior if attempting to recursively merge a sequence larger than the maximum would most likely be stack overflow.
+
+Q11. Include the data from your execution timing and explain how is supports your Big O prediction for binary `merge`.
+A11. 
+[SimpleTest] starting (STUDENT_TEST, line 169) Time operation merge 1......  =  Correct
+    Line 174 TIME_OPERATION merge(a, b) (size = 200000) completed in    0.084 secs
+[SimpleTest] starting (STUDENT_TEST, line 177) Time operation merge 2......  =  Correct
+    Line 182 TIME_OPERATION merge(a, b) (size = 400000) completed in    0.163 secs
+[SimpleTest] starting (STUDENT_TEST, line 185) Time operation merge 3......  =  Correct
+    Line 190 TIME_OPERATION merge(a, b) (size = 600000) completed in    0.251 secs
+
+This supports my prediction that it is O(n) because when I double the input, the time roughly doubles.
+
+Q12. Include the data from your execution timing and explain how it supports your Big O prediction for `multiMerge`.
+A12.
+[SimpleTest] starting (STUDENT_TEST, line 193) Time operation multiMerge...  =  Correct
+    Line 200 TIME_OPERATION multiMerge(all) (size =  12500) completed in    3.225 secs
+[SimpleTest] starting (STUDENT_TEST, line 203) Time operation multiMerge...  =  Correct
+    Line 210 TIME_OPERATION multiMerge(all) (size =  25000) completed in   12.402 secs
+[SimpleTest] starting (STUDENT_TEST, line 213) Time operation multiMerge...  =  Correct
+    Line 220 TIME_OPERATION multiMerge(all) (size =  50000) completed in   48.727 secs
+
+This supports my prediction that it in O(n^2) because when I graphed these values, it reprenented a quadratic graph. 
+
+Q13. Include the data from your execution timing and explain how it supports the `O(n log k)` runtime prediction for recMultiMerge.
+A13. 
+[SimpleTest] starting (STUDENT_TEST, line 223) Time operation recMultiMe...  =  Correct
+    Line 229 TIME_OPERATION recMultiMerge(all) (size =  10000) completed in    0.085 secs
+[SimpleTest] starting (STUDENT_TEST, line 232) Time operation recMultiMe...  =  Correct
+    Line 238 TIME_OPERATION recMultiMerge(all) (size =  20000) completed in    0.175 secs
+[SimpleTest] starting (STUDENT_TEST, line 241) Time operation recMultiMe...  =  Correct
+    Line 247 TIME_OPERATION recMultiMerge(all) (size =  40000) completed in    0.383 secs
+
+This supports the `O(n log k)` runtime prediction because as the size doubles, the runtime does not double but instead it approaches a logarithmic value.
+
+Q14. Earlier you worked out how a recursive implementation of `merge` would limit the allowable input sequence length. Are the limits on the call stack also an issue for the recursive implementation of `recMultiMerge`? Explain why or why not.
+A14. Yes because it is calling the merge function so there must be some sort of constrants. But also, maybe not? Because it is cutting it in half each time so the limit would be a lot more than before if so.
+
+
+Backtracking Warmup
+-------------------
+Q15: What is the value of the totalMoves variable in hanoiAnimationafter
+stepping over the call to moveTower?
+A15: The value of totalMoves after stepping over to moveTower is 15.
+
+Q16: What is the value of the totalMoves variable inside the first moveTower
+call after stepping over its first recursive sub-call? (In other words, just
+after stepping over the first recursive sub-call to moveTower inside the else
+statement in the recursive function.)
+A16: The value of totalMoves after stepping over its first recursive sub-call is 7.
+
+Q17: After breaking at the base case of moveTower and then choosing Step Out,
+where do you end up? (What function are you in, and at what line number?) What
+is the value of the totalMoves variable at this point?
+A17: After stepping out, I am in the same place. I am in the moveTower function and at line number 58. The value of totalMoves is equal to 0.
+
+Q18: What is the smallest possible input that you used to trigger the bug in 
+the program?
+A18: The smallest possible input that I used to trigger the bug in the program was of length 1.
+
+Q19: Identify the one-character error in the code and explain why that one-character bug causes the function to return the output you see when running on the minimal input you listed above. You should be able to specifically account for how the error causes the result to change from “completely correct” to “terribly wrong.”
+A19: The one char error in the code is `+` vs `+=` (buggy version). This `+` is copying the variable and adding to it. The `+=` is adding and setting the original variable value.
+
+Embedded Ethics in CS106B
+-------------------------
+Please refer to the assignment handout for these questions.
+
+A20: The questions I might ask before agreeing to do this job are: By what value will I be choosing the districts? Is this fair for all people? Does this give a major advantage? Is this affecting people poorly? Is this legal?. Some of the benefits might be: more experience and maybe helping a certain party? Some drawbacks might be: this might not be legal, there might be an alterior motive, and lastly, it might be based on something not related to voting. 
+
+A21: The could should be used for fair and legal purposes only. It should not be used in cases of gerry mandering on things like race, gender, sex, religion, etc. If unsure if you can use this, you probably can not in said case. Do not use unfairly.
+
+A22: I could use my experience and the software tools I created to help advocate on behalf of people to help to uncover and 'expose' in a sense districts that are gerrymandered unfairly and try to get justice. I could use social media to have a large outreach and to spread information about unfair gerrymandering that might be taking place. I could also use lobbying to try and change these practices and use my software to show how it is affecting people.
