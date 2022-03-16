@@ -1,0 +1,66 @@
+Warmup
+------
+Q1. The display of the Stack in the debugger uses the labels `top` and `bottom` to mark the two ends of the stack. How are the contents labeled when the Stack contains only one element?
+A1: The contents are labeled as one "bottom/top" when the stack only contains one element.
+
+Q2. For which type of inputs does the function produce a correct result?
+A2: The type of input that the function produces a correct result is where there are no negative numbers in the queue.
+
+Q3. For which type of inputs does the function go into an infinite loop?
+A3: The types of inputs that the function goes into an infinite loop are where the queue only consists of negative numbers.
+
+Q4. What is the bug within `duplicateNegatives` that causes it to get stuck in an infinite loop?
+A4: The bug within `duplicateNegatives` that causes it to get stuck in an infinite loop is that it is not accounting for the element be added to the queue
+in the for-loop. This can be fixed with adding i++ in the if-condition where the value is negative to skip the number being added so it does not cause an infinite loop.
+
+Q5. What is the value of the variables (as reported in the debugger variable pane) right before the program crashes? What happens if you try to step over the line where the program crashes?
+A5: The value of the variables right before the program crashes is expected: { "Margaret": "Meg", "Thomas": "Tom" } and m: { "Jan": "Jan", "Margaret": "Meg", "Thomas": "Tom" }.
+If you try to step over the line where the program crashes, the debugger does not stop running but the memory stack disappears.
+
+Maze
+-------
+Q6. So far in this class, we've passed our data structures by reference. Why do you think `checkSolution` passes `path` by value instead of by reference?
+A6: I think that `checkSolution` passes `path` by value instead of reference because the method edits the copy of the path value and when it errors, it stops the function
+but does not stop in another function and might lead to a wrong answer.
+
+Q7. After you have written your tests, describe your testing strategy to determine that your checkSolution works as intended.
+A7: My testing strategy for determining if `checkSolution` works as intended was that I made test cases that reflect the errors the program is trying to catch. For example,
+an invalid starting point, an invalid ending point, and duplicate path values.
+
+Search Engine
+-------------
+Q8: Draw out the inverted index for the `res/tiny.txt` database file.
+A8:
+blue -> { "www.dr.seuss.net", "www.rainbow.org" }
+bread -> { "www.shoppinglist.com" }
+cheese -> { "www.shoppinglist.com" }
+eat -> { "www.bigbadwolf.com" }
+eggs -> { "www.shoppinglist.com" }
+fish -> { "www.dr.seuss.net", "www.shoppinglist.com" }
+green -> { "www.rainbow.org" }
+i'm -> { "www.bigbadwolf.com" }
+indigo -> { "www.rainbow.org" }
+milk -> { "www.shoppinglist.com" }
+not -> { "www.bigbadwolf.com" }
+one -> { "www.dr.seuss.net" }
+orange -> { "www.rainbow.org" }
+red -> { "www.dr.seuss.net", "www.rainbow.org" }
+to -> { "www.bigbadwolf.com" }
+trying -> { "www.bigbadwolf.com" }
+two -> { "www.dr.seuss.net" }
+violet -> { "www.rainbow.org" }
+yellow -> { "www.rainbow.org" }
+you -> { "www.bigbadwolf.com" }
+
+Beyond Algorithmic Analysis
+---------------------------
+Q9: In a short paragraph, describe a real or plausible scenario not previously presented in lecture in which using techniques like Big-O or Asymptotic Analysis to improve the performance of an algorithm might benefit the environment. Include your thoughts on how a software engineer working on this piece of code might identify such potential benefits and take them into consideration when designing the code.
+A9: A plausible scenario that techniques like Big-0 would help to improve the environment would be in a case of auto pilot for airplanes. If you were to make a poorly designed slow algorithm for the plane, it might not make the most optimial and shortest route to a destination and cause a waste of fuel that could have been saved if optimized. My thoughts on how a software engineer working on this piece of
+code might identify such potential benefits and take them into consideration when designing the code are that the software engineer should keep in mind how a plane affects the environment and its footprint and how they can prevent this as much as possible.
+
+Q10: According to the contract that IBM struck with the state of Indiana, the criteria for optimization were improving efficiency of the overall welfare system and reducing fraud. Criteria for reducing wait times and wrongful denials were not included.  However, wrongfully denying benefits has a huge negative  impact on the citizens who rely on the system.  If criteria like minimizing wrongful denials were not included in the contract, should engineers have included them in their optimization algorithm?  Why or why not?
+A10: Yes I think that engineers should have included them in their opitmization algorithm because when an engineer is designing something, it should not just be get from point a to point b. They should think about all of the possible effects their code might have or possible outcomes of the code and try to optimize that rather than trying to optimize to get from point a to point b. Although, the engineers were most likely not aware of this problem and that it would become a thing, I feel like the engineers should have thought more thoroughly about their code and how it would have affected those people.
+
+Q11: Imagine that after completing CS106B you are hired at IBM as an engineer working on this system. How might you have approached designing and setting the goals of this system?  How might you apply algorithmic analysis tools to build a system that achieved  the desired goals? Could you do so in a way that avoids the severe negative impacts on users of the system that are outlined in the case study?
+A11: If I were an engineer at IBM working on this system, I would have approached designing and setting the goals of this system with the idea of efficiency in mind but also the goal of helping people in mind. There might need to be some sacrifice for efficiency if you are not getting the socially optimal outcome. I might apply algorithmic analysis tools to build a system that achieved the desired goals by designing the system where it is also efficient socially. Fixing the wait times, appears, and wrongful denials but also being optimial and efficient. Although, I think that no matter what, having a perfect system is impossible or rare and there will also be severe negative impacts on people, but I think that it would be drastically minimized compared to the case study.
+
