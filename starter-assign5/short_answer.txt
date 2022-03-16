@@ -1,0 +1,136 @@
+Debugging Warmup
+----------------
+Q1. How do the values of the member variables of `allBalls[0]` change from iteration to iteration? Specifically, what happens to the values of `_id`, `_x`, and `_y`?
+A1. The value of `_id` does not change from iteration to iteration, `_x` and `_y` do change each iteration and are changed by the values of `_vx` and `_vy`.
+
+Q2. What is the pattern to how the values of the member variables of the stuck ball change from iteration to iteration?
+A2. The pattern to how the values of the member variables of the stuck ball changes from iteration to iteration is that the `_x` or `_y` changes by a certain amount alternating positive and negative but remains in the same place.
+
+Q3. After forcing the stuck ball to position (0, 0), does the ball move normally from there or does it stay stuck?
+A3. The ball moves normally from there after being placed at (0, 0) because it goes from a positive velocity in the move() method to a negative one which changes the direction 180
+
+Q4. On your system, what is the observed consequence of these three memory errors:
+- access an index outside the allocated array bounds?
+- access memory after it has been deallocated?
+- deallocate same memory twice?
+A4. Access an index outside the allocated array bounds: When I try printing a value out of bounds of an allocated array, it prints a garbage value. Access memory after it has been deallocated: When I try printing a memory value after it has been deallocated it prints a garbage value as well. When I try deallocating the same memory twice, it crashes the program.
+
+
+Sorted Array Priority Queue
+---------------------------
+Q5. There are extensive comments in both the interface (`qsortedarray.h`) and implementation (`pqsortedarray.cpp`). Explain how and why the comments in the interface differ from those in the implementation. Consider both the content and audience for the documentation.
+A5. The comments in the interface differ from those in the implementation because those in the interface are more high level and describe what a function returns or how it plays a role and in the implementation, the same methods comments describe the more in depth of how it is implemented and how it works. 
+
+Q6. The class declares member variables `_numAllocated` and `_numFilled`. What is the difference between these two counts and why are both needed?
+A6. The difference between _numAllocated and _numFilled is that _numAllocated is the length of the allocated array using new and _numFilled is the number of elements stored in that array. Both are needed because a dynamic array does not keep track of its own length so you wouldn't know how many elements it can store, hence you need both _numAllocated (you dont wanna go over the amount of elements you can store), and _numFilled (you need to keep track of how many you have stored).
+
+Q7. Detangle the expression in the last line of the `dequeue` function and explain how it returns and removes the frontmost element.
+A7. The expression in the last line of the `dequeue` function returns the DataPoint at the index of the numFilled - 1. It returns and removes the frontmost element because it 1. decreases the numFilled by 1 and 2. returns that from the array which removes it (not literally but from the accessible elements). 
+
+Q8. Give the results from your time trials and explain how they support your prediction for the Big-O runtimes of  `enqueue` and `dequeue`.
+A8. 
+12500: fq: .5seconds, eq: ~0seconds
+25000: fq: 1.839seconds, eq: 0.001seconds
+50000: fq: 7.913seconds, eq: 0.001seconds
+100000: fq: 30.66 seconds, eq: 0.002seconds
+
+These times support my prediction because dequeue is constant time and doubles in time by a constant factor O(1) each time the size doubles, and the enqueue supports my prediction because it is O(n) time because each time the size doubles, the time gets multipled by the same each time it doubles. The number it gets multiplied by is ~4.
+
+Q9. If the PQSortedArray stored the elements in increasing priority order instead of decreasing priority order, what impact would this have on the Big-O runtimes of `enqueue` and `dequeue`?
+A9. This would have no impact on either runtimes because dequeue would remain constant because you would just be removing from the end of the array, and enqueue would remain the same because you would still run the same for loops on the array, just changing one comparison which worst case scenario would be O(n).
+
+Priority Queue Client Usage
+---------------------------
+Q10. Based on the Big O of `PQSortedArray` `enqueue`/`dequeue`, what do you expect for the Big O runtime of `pqSort`? Run some timing trials to confirm your prediction, and include that data in your answer.
+A10.
+1000: 0.003seconds
+2000: 0.011seconds
+4000: 0.032seconds
+8000: 0.117seconds
+
+I expect the runtime to be O(n) for `pqSort` because each time the size was doubled in the time trials, the factor by which the time was multiplied was the same around ~3.6 in each trial.
+
+Q11. Based on the Big O of `PQSortedArray` `enqueue`/`dequeue`, what do you expect for the Big O runtime of `topK` in terms of `k` and `n`? Run some timing trials to confirm your prediction, and include that data in your answer.
+A11.
+10000: k = 1, 0.008 seconds
+20000: k = 2  0.019 seconds
+40000: k = 4  0.036 seconds
+80000: k = 8  0.072 seconds
+
+I expect the runtime to be O(k) for `topK` in terms of `k` and `n` because the runtime only increases by a factor of `k`.
+
+Heap Priority Queue
+-------------------
+Q12. Start with an empty binary heap and enqueue the nine `DataPoint`s in the order shown below and show the result. You only need to show the final heap, not intermediate steps. Draw the heap as tree-like diagram with root element on top, its two children below, and so on.  Yes, we know that we're asking you to draw pictures in a text file (we love the [AsciiFlow](http://asciiflow.com/) tool for "drawing" in text).
+A12. 
+                               ┌────┐
+                               │  T │
+                               │    │
+                               └─┬┬─┘
+                                 ││
+                                 ││
+                                 ││
+                                 ││
+                                 ││
+               ┌─────┐           ││             ┌──────┐
+               │   B ├───────────┴┤             │  G   │
+               │     │            └─────────────┤      │
+               └──┬┬─┘                          └──┬─┬─┘
+                  ││                               │ │
+                  ││                               │ │
+                  ││                               │ │    ┌───────────┐
+        ┌──────┬──┴┴───┬───────┐           ┌──────┬┘ └────┤           │
+        │  S   │       │       │           │  V   │       │        R  │
+        │      │       │  A    │           │      │       │           │
+        └─┬┬───┘       └───────┘           └──────┘       └───────────┘
+          ││
+          ││
+    ┌┬────┴┴─┬──┐
+┌───┴┤       ├──┴───┐
+│ O  │       │      │
+│    │       │ K    │
+└────┘       └──────┘
+
+Q13. Make two calls to `dequeue` on the above binary heap and draw the updated result.
+A13.
+                     ┌───────┐
+                     │   B   │
+                     │       │
+                     └───┬─┬─┘
+                         │ │
+                         │ │
+                         │ │
+                         │ │
+         ┌─────────┬─────┘ │
+         │         │       │                  ┌────┐
+         │     A   │       └──────────────────┤   R│
+         │         │                          └─┬─┬┘
+         └────┬─┬──┘                            │ │
+              │ │                               │ │
+   ┌─┬────────┘ │                               │ │
+┌──┴─┤          │    ┌───┐                      │ │
+│  S │          └────┤ O │              ┌──┐    │ │   ┌─────┐
+└────┘               │   │              │ V├────┘ └───┤  K  │
+                     └───┘              │  │          └─────┘
+                                        └──┘
+
+Q14. Draw the array representation of the binary heap above. Label each element with its array index.
+A14. 
+0 - B
+1 - A
+2 - R
+3 - S
+4 - O
+5 - V
+6 - K
+
+Q15. Run timing trials and provide your results that confirm that `pqSort` runs in time O(NlogN) and `topK` in O(NlogK).
+A15. PQHeap for some reason broke and I have to submit I don't have more time. :(
+
+Embedded Ethics
+---------------
+Q16. If you were working on constructing  a priority-based system like this, how would you weigh the tradeoff between collecting enough information to make informed decisions about how to allocate support resources to people in need while allowing members of vulnerable populations to maintain their privacy and autonomy?
+A16. If I were working on constructing a system like this, I would weigh allocating support resources to people in need more than collecting less information. Personally, I think that the tradeoff of a better outcome for someone is better than collecting less information and a not optimal outcome. I think that there's two options: little information collected & not optimal and more information collected & very optimal. Both have disadvantages and advantages but I feel that collecting a little more information about someone to allocate resources more efficiently for someone would be worth it more in the end. 
+
+Q17. One of the key themes of the embedded ethics content in this course has been the importance of considering the societal and human impact of technical solutions. What is your main takeaway from reading this case study, specifically as it related to ideas around consequences of human ranking/prioritization algorithms? If you were working on a real-world project in the future that required you to reduce complex sources of data into a single numerical ranking or priority score, what factors might you want to consider as you implemented these algorithms?  How would you decide when not to build a system?
+A17. My main takeaway from reading this case study is that people should be prioritized first over things like tax payer money. As well, it might be more beneficial to create a first come first serve basis that way it is fair for everyone and that rankings might not be the best choice in the situation. If I were to work on a real-world project in the future, in deciding the single numerical ranking, I would assign every source a weight. The more important, the higher the weight, and then add them all up to determine a final score. I think that some things might be more important than others when it comes to determining a certain ranking. Although, sometimes, it might be smart to not build a system when people are disadvantaged in the rankings and there might be things like discrimination, or factors that hurt society and people.
