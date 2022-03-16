@@ -1,0 +1,60 @@
+
+Perfect Numbers
+---------------
+
+Q1. How many numbers does the program search through? How many perfect numbers does it find? What are these perfect numbers?
+A1: The amount of numbers that the program searchs through is 39999. It finds 4 perfect numbers which are the following: 6, 28,
+    496, and 8128.
+
+Q2. Record the timing results for `findPerfects` into a table.
+A2: 
+Search Size: 20000  Runtime: 1.609 seconds
+Search Size: 40000  Runtime: 6.251 seconds
+Search Size: 80000  Runtime: 24.433 seconds
+Search Size: 160000 Runtime: 113.085 seconds
+Search Size: 320000 Runtime: > 5 minutes
+Search Size: 640000 Runtime: > 5 minutes
+
+Q3. Does it take the same amount of effort to compute `isPerfect` on the number 10 as it does on the number 1000? Why or why not? Does it take the same amount of work for `findPerfects` to search the range of numbers from 1-1000 as it does to search the numbers from 1000-2000? Why or why not?
+A3: No it does not take the same amount of effort to compute isPerfect on the number 10 vs 1000 because for 10 it goes through all numbers 1-9 inclusively and for 1000 it goes through all numbers 1-999 inclusively. No it does not take the same amount of effort of work for the range of numbers 1-1000 as 1000-2000 because for every number in 1000-2000 it has to go from numbers 1 to n - 1 and the highest number would be going from 1 to 1999 and in the first range, it would only go through 1-999.
+
+Q4. Extrapolate from the data you gathered and make a prediction: how long will it take `findPerfects` to reach the fifth perfect number?
+A4: I think that it will take around 3 weeks to find the fifth perfect number based on the quadratic runtime.
+
+Q5. Do any of the tests still pass even with this broken function? Why or why not?
+A5: Yes, because the test case testings that 12 and 98765 are not perfect return false normally, and with the bug introduced they also return false.
+
+Q6. Can the test framework detect that the test case is "bogus", in the sense that the premise of the test case itself is off-base?
+A6: No because a human is making the test case and when it is running the test case, it is assuming that what the human inputted for the result is the expected.
+
+Q7. Describe the testing strategy your used for your test cases to confirm `smarterSum` is working correctly.
+A7: My testing strategy for my test cases to make sure smarterSum is working correctly is that I used numbers that have perfect roots and I used numbers that have roots that have decimals below .5 and above .5 to make sure there isn't a rounding issue.
+
+Q8. Record your timing results for `findPerfectsSmarter` into a table.
+A8: 
+Search Size: 20000  Runtime: 0.058 seconds
+Search Size: 40000  Runtime: 0.11 seconds
+Search Size: 80000  Runtime: 0.259 seconds
+Search Size: 160000 Runtime: 0.692 seconds
+Search Size: 320000 Runtime: 1.844 seconds
+Search Size: 640000 Runtime: 5.058 seconds
+
+Q9. Make a prediction: how long will `findPerfectsSmarter` take to reach the fifth perfect number?
+A9: I think that it will take around 55 seconds to react the fifth perfect number.
+
+Q10. Explain how you chose your specific test cases and why they lead you to be confident `findNthPerfectEuclid` is working correctly.
+A10: I chose my specific test cases based on the table of perfect numbers provided. I put the the index of the perfect number and expected it to be perfect and it was.
+
+
+Soundex
+-------
+
+Q11. What is the Soundex code for "Angelou"? What is the code for your own surname?
+A11: The soundex code for "Angelou" is A524 and the code for my own surname "Ryan" is R500
+
+Q12. Before writing any code, brainstorm your plan of attack and sketch how you might decompose the work into smaller tasks. Briefly describe your decomposition strategy.
+A12: My plan of attack will be breaking down the algorithm into the steps that produces the result. First I will discard all non-letters. Second I will encode each letter into a digit. Third I will remove duplicate digits. Fourth, I will remove replace the first digit with the uppercase first letter of the original name. Fifth, I will remove all zeros from the code. Lastly, I will make it 4 characters in length.
+
+Q13. Think about one or more examples of a class of names that the Soundex system might not work well for. Explain what this class of names is and why the system might incorrectly group them or mis-categorize one of the names.
+A13: One example of a class of names that the Soundex system might not work well for are Spanish names. This class of names consist of names that are spelled like other names in English but have totally different meanings if translated or compared to other names. For example, "Javier" gets group with "Jeffery". The system might incorrectly group them because different languages might not have the same pronunciations as English and the name might be completely different from the English one.
+
